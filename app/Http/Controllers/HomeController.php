@@ -62,9 +62,17 @@ class HomeController extends Controller
 //    }
     public function index()
     {
+        //product slug
         $products = Product::all();
 //        foreach ($products as $p){
 //            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
+//            $p->slug =$slug.$p->__get("id");
+//            $p->save();
+//        }
+        //categories slug
+        $categories = Category::all();
+//        foreach ($categories as $p){
+//            $slug = \Illuminate\Support\Str::slug($p->__get("category_name"));
 //            $p->slug =$slug.$p->__get("id");
 //            $p->save();
 //        }
@@ -81,6 +89,7 @@ class HomeController extends Controller
             //offset : bỏ đi 3 thằng đầu tiên
             //offset = (page-1)*limit
             $view = view("frontend.home", [
+                "categories" => $categories,
                 "most_views" => $most_views,
                 "featured" => $featured,
                 "latest_1" => $latest_1,
