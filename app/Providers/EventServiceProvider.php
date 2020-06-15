@@ -24,7 +24,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreated::class =>[
             CleanCart::class,
-            MailToUserAfterOrderCreated::class,
+//            MailToUserAfterOrderCreated::class,
         ]
     ];
 

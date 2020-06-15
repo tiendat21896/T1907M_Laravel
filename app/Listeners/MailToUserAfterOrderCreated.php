@@ -30,13 +30,13 @@ class MailToUserAfterOrderCreated
      */
     public function handle(OrderCreated $event)
     {
-        $order = $event -> order;
-        // Lay Email
-        $user = User::find($order->__get("user_id"));
-        try{
-            Mail::to($user->__get("email"))->send(new \App\Mail\MailToUserAfterOrderCreated($user));
-        }catch (Exception $exception){
-
-        }
+//        $order = $event -> order;
+//        // Lay Email
+//        $user = User::find($order->__get("user_id"));
+//        try{
+//            Mail::to($user->__get("email"))->send(new \App\Mail\MailToUserAfterOrderCreated($user));
+//        }catch (Exception $exception){
+//
+//        }
     }
 }
