@@ -233,8 +233,7 @@ class HomeController extends Controller
             event(new OrderCreated($order));
 
         }catch (\Exception $exception){
-
+            return $exception->getMessage();
         }
-        return redirect()->to("/");
     }
 }
