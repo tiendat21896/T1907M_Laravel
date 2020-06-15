@@ -73,7 +73,7 @@ class HomeController extends Controller
 //        $u->role =User::ADMIN_ROLE;
 //        $u->save();
         if (!Cache::has("home_page")){
-            $most_views = Product::orderBy("view_count", "DESC")->limit(8)->get();
+            $most_views = Product::orderBy("viewer_count", "DESC")->limit(8)->get();
             $featured = Product::orderBy("updated_at", "DESC")->limit(8)->get();
             $latest_1 = Product::orderBy("updated_at", "DESC")->limit(3)->get();
             $latest_2 = Product::orderBy("updated_at", "DESC")->offset(3)->limit(3)->get();
