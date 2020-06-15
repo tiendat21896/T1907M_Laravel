@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                @foreach($featureds as $f)
+                @foreach($featured as $f)
                     <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="{{$f->getImage()}}">
