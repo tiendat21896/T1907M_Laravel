@@ -9,19 +9,21 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-//    public function run()
-//    {
-//        // $this->call(UserSeeder::class);
-//        factory(\App\Brand::class, 5) ->create();
-//    }
-//    public function run1()
-//    {
-//        // $this->call(UserSeeder::class);
-//        factory(\App\Category::class, 5) ->create();
-//    }
     public function run()
     {
         // $this->call(UserSeeder::class);
-        factory(\App\Product::class, 20) ->create();
+        factory(\App\Brand::class, 20) ->create();
+        factory(\App\Category::class, 20) ->create();
+        factory(\App\Product::class, 100) ->create();
     }
+//    public function run()
+//    {
+//        // $this->call(UserSeeder::class);
+//        factory(\App\Category::class, 20) ->create();
+//    }
+//    public function run()
+//    {
+//        // $this->call(UserSeeder::class);
+//        factory(\App\Product::class, 100) ->create();
+//    }
 }
