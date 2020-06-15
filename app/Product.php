@@ -15,6 +15,7 @@ class Product extends Model {
         "qty",
         "category_id",
         "brand_id",
+        "viewer_count",
     ];
 
     public function getImage(){
