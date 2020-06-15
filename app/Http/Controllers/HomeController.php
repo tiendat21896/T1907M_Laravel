@@ -63,15 +63,15 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        foreach ($products as $p){
-            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
-            $p->slug =$slug.$p->__get("id");
-            $p->save();
-        }
+//        foreach ($products as $p){
+//            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
+//            $p->slug =$slug.$p->__get("id");
+//            $p->save();
+//        }
 //        die("done");
-        $u = Auth::user();
-        $u->role =User::ADMIN_ROLE;
-        $u->save();
+//        $u = Auth::user();
+//        $u->role =User::ADMIN_ROLE;
+//        $u->save();
         if (!Cache::has("home_page")){
             $most_views = Product::orderBy("view_count", "DESC")->limit(8)->get();
             $featured = Product::orderBy("updated_at", "DESC")->limit(8)->get();
