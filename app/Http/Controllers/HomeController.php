@@ -64,23 +64,23 @@ class HomeController extends Controller
     {
         //product slug
         $products = Product::all();
-        foreach ($products as $p){
-            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
-            $p->slug =$slug.$p->__get("id");
-            $p->save();
-        }
-        //categories slug
+//        foreach ($products as $p){
+//            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
+//            $p->slug =$slug.$p->__get("id");
+//            $p->save();
+//        }
+//        //categories slug
         $categories = Category::all();
-        foreach ($categories as $p){
-            $slug = \Illuminate\Support\Str::slug($p->__get("category_name"));
-            $p->slug =$slug.$p->__get("id");
-            $p->save();
-        }
-        die("done");
-        ///
-        $u = Auth::user();
-        $u->role =User::ADMIN_ROLE;
-        $u->save();
+//        foreach ($categories as $p){
+//            $slug = \Illuminate\Support\Str::slug($p->__get("category_name"));
+//            $p->slug =$slug.$p->__get("id");
+//            $p->save();
+//        }
+//        die("done");
+//        ///
+//        $u = Auth::user();
+//        $u->role =User::ADMIN_ROLE;
+//        $u->save();
         if (!Cache::has("home_page")){
             $most_views = Product::orderBy("viewer_count", "DESC")->limit(8)->get();
             $featured = Product::orderBy("updated_at", "DESC")->limit(8)->get();
