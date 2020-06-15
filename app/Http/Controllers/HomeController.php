@@ -29,36 +29,67 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+//    public function index()
+//    {
+//        $products = Product::all();
+//        foreach ($products as $p){
+//            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
+//            $p->slug = $slug.$p->__get("id");// luu lai vao DB
+//            $p->save();
+//            // tuong duong $p->update(["slug"=>$slug.$p->__get("id")]);
+//        }
+//        $u = Auth::user();
+//        $u->role = User::ADMIN_ROLE;
+//        $u->save();
+//
+//        if (!Cache::has("home_page")){
+//            $categories = Category::all();
+//            $most_view = Product::orderBy("viewer_count","DESC")->limit(8)->get();
+//            $featureds = Product::orderBy("updated_at","DESC")->limit(8)->get();
+//            $latest_1 = Product::orderBy("created_at","DESC")->limit(3)->get();
+//            $latest_2 = Product::orderBy("created_at","DESC")->offset(3)->limit(3)->get();
+//            $view =  view("frontend.home",[
+//                "categories" => $categories,
+//                "most_view"=>$most_view,
+//                "featureds" =>$featureds,
+//                "latest_1" => $latest_1,
+//                "latest_2" => $latest_2,
+//            ])->render();
+//            $now = Carbon::now();
+//            Cache::put("home_page",$view,$now->addMinute(20));
+//        }
+//        return Cache::get("home_page");
+//    }
     public function index()
     {
         $products = Product::all();
         foreach ($products as $p){
             $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
-            $p->slug = $slug.$p->__get("id");// luu lai vao DB
+            $p->slug =$slug.$p->__get("id");
             $p->save();
-            // tuong duong $p->update(["slug"=>$slug.$p->__get("id")]);
         }
+//        die("done");
         $u = Auth::user();
-        $u->role = User::ADMIN_ROLE;
+        $u->role =User::ADMIN_ROLE;
         $u->save();
-
         if (!Cache::has("home_page")){
-            $categories = Category::all();
-            $most_view = Product::orderBy("viewer_count","DESC")->limit(8)->get();
-            $featureds = Product::orderBy("updated_at","DESC")->limit(8)->get();
-            $latest_1 = Product::orderBy("created_at","DESC")->limit(3)->get();
-            $latest_2 = Product::orderBy("created_at","DESC")->offset(3)->limit(3)->get();
-            $view =  view("frontend.home",[
-                "categories" => $categories,
-                "most_view"=>$most_view,
-                "featureds" =>$featureds,
+            $most_views = Product::orderBy("view_count", "DESC")->limit(8)->get();
+            $featured = Product::orderBy("updated_at", "DESC")->limit(8)->get();
+            $latest_1 = Product::orderBy("updated_at", "DESC")->limit(3)->get();
+            $latest_2 = Product::orderBy("updated_at", "DESC")->offset(3)->limit(3)->get();
+            //limit :lấy 3 thằng
+            //offset : bỏ đi 3 thằng đầu tiên
+            //offset = (page-1)*limit
+            $view = view("frontend.home", [
+                "most_views" => $most_views,
+                "featured" => $featured,
                 "latest_1" => $latest_1,
-                "latest_2" => $latest_2,
+                "latest_2" => $latest_2
             ])->render();
             $now = Carbon::now();
-            Cache::put("home_page",$view,$now->addMinute(20));
+            Cache::put("home_page", $view, $now->addMinutes(20));
         }
-        return Cache::get("home_page");
+        return  Cache::get("home_page");
     }
 
     public function category(Category $category){
