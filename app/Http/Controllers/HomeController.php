@@ -31,13 +31,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        foreach ($products as $p){
-            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
-            $p->slug = $slug.$p->__get("id");// luu lai vao DB
-            $p->save();
-            // tuong duong $p->update(["slug"=>$slug.$p->__get("id")]);
-        }
+//        $products = Product::all();
+//        foreach ($products as $p){
+//            $slug = \Illuminate\Support\Str::slug($p->__get("product_name"));
+//            $p->slug = $slug.$p->__get("id");// luu lai vao DB
+//            $p->save();
+//            // tuong duong $p->update(["slug"=>$slug.$p->__get("id")]);
+//        }
         $u = Auth::user();
         $u->role = User::ADMIN_ROLE;
         $u->save();
