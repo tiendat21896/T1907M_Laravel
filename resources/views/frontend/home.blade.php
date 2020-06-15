@@ -59,7 +59,7 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                    @foreach($most_view as $m)
+                    @foreach($most_views as $m)
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{$m->getImage()}}">
                             <h5><a href="{{$m->getProductUrl()}}">{{$m->__get("viewer_count")}}</a></h5>
