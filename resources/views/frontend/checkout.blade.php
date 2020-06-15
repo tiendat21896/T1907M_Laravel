@@ -30,7 +30,7 @@
             </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="{{url("checkout")}}" method="post">
+                <form action="{{url("/checkout")}}" method="post">
                     @method("POST")
                     @csrf
                     <div class="row">
