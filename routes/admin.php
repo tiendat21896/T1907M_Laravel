@@ -1,6 +1,6 @@
 <?php
 
-Route::get("/","Webcontroller@dashboard");
+Route::get("/","WebController@dashboard");
 //    Category
 Route::get('/list-category', 'WebController@listCategory');
 Route::get('/new-category', 'WebController@newCategory');
