@@ -1,6 +1,27 @@
 @extends("frontend.layout")
 @section("content")
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+    <script>
 
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('605a29bbfc68283b9d0c', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('global');
+        channel.bind('new_category', function(data) {
+            alert(data.message);
+        });
+        channel.bind("new_product",function(data) {
+            alert(data.message);
+        });
+        var vtv6 = pusher.subscribe("home");
+        vtv6.bind("home_page",function(data) {
+            location.reload();
+        });
+    </script>
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
@@ -27,9 +48,9 @@
                                     <span class="arrow_carrot-down"></span>
                                 </div>
                                 <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
+                                    <button type="submit" class="site-btn">SEARCH</button>
+                                </form>
+                            </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>

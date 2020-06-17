@@ -244,4 +244,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+    public function contact(){
+        return view("frontend.contact");
+    }
 }

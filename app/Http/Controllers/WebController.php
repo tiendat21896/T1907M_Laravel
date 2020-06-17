@@ -74,11 +74,13 @@ class WebController extends Controller
                 "category_name" => $request->get("category_name"),
                 "category_image" =>$categoryImage
             ]);
-
+            $data["message"] = "just added a new category".$request->get("category_name");
+            notify("global","new_category",$data);
             // "updated_at"=>Carbon::now(),
             //            DB::table("categories") ->insert([
 //                "category_name" =>$request->get("category_name"),
 //                "created_at"=>Carbon::now(),
+
 //
         } catch (\Exception $exception) {
             return redirect()->back();
@@ -135,6 +137,7 @@ class WebController extends Controller
         $category = Category::findOrFail($id);
         try {
             $category->delete();
+            notify("home","home_page",[]);
         } catch (\Exception $exception) {
             return redirect()->back();
         }
